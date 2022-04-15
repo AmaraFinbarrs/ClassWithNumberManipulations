@@ -6,7 +6,7 @@ class Number
 
     public void SetValue(int val)
     {
-        value = val;
+        this.value = val;
     }
 
     public double GetValue()
@@ -16,73 +16,39 @@ class Number
 
     public bool IsZero()
     {
-        if (value == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return value == 0;
     }
 
     public bool IsPositive()
     {
         //if the value is +ve, it is greater than zero
         //else it is less then zero
-        if (value > 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return value > 0;
     }
 
     public bool IsNegative()
     {
-        if (value < 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return value < 0;
     }
 
     public bool IsOdd()
     {
         //if value % 2 is 1, it is odd
         //else it is not odd, but is even.
-        if (value % 2 != 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return value % 2 != 0;
+       
     }
 
     public bool IsEven()
     {
-        if (value % 2 == 0)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return value % 2 == 0;
     }
 
     public bool IsPrime()
     {
-        if (value == 1)
+        if (value == 1 || value < 0)
         {
-            return false; //1 is not a prime number
+            return false; //1 is not a prime number and negative numbers are not prime numbers
         }
         else
         {
@@ -109,7 +75,7 @@ class Number
        //using for loop up to the exponent number
        //return number*MethodName()
        int e = exponent;
-        int b= 1;
+        int power= basenumber;
 
         if (recursive == true)
         {
@@ -123,9 +89,9 @@ class Number
             }
         }
 
-        for (int i = 1; i <= e; i++)
+        for (int i = 1; i < e; i++)
         {
-            b *= basenumber;
+            power *= basenumber;
         }
         return b;
 
@@ -153,8 +119,8 @@ class Number
         int val = value;
         while (val != 0)
         {
-            sum = sum + val % 10;
-            val = val / 10;
+            sum = sum + val % 10; // the modulus is used to retrieve the last digit
+            val = val / 10; // the division is used to remove the last digit completely
         }
         return sum;
     }
@@ -164,7 +130,7 @@ class Number
         int val = value;
         while(val > 0)
         {
-            rev_num = rev_num * 10 + val % 10;
+            rev_num = rev_num * 10 + val % 10; //multiplication is used to add a last digit of zero(0)
             val = val / 10;
         }
         return rev_num;
